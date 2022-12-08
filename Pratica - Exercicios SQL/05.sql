@@ -1,0 +1,1 @@
+DELETE from clientes WHERE nome = 'Orlando Pequeno Jesus';
