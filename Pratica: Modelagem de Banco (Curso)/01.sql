@@ -30,7 +30,7 @@ CREATE TABLE projetos(
 	id SERIAL PRIMARY KEY,
 	nome TEXT NOT NULL UNIQUE,
 	modulo_id INTEGER NOT NULL REFERENCES modulos(id)
-);
+); 
 
 CREATE TABLE projetos_entregas(
 	id SERIAL PRIMARY KEY,
