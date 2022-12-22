@@ -1,0 +1,41 @@
+CREATE DATABASE curso;
+
+CREATE TABLE alunos(
+	id SERIAL PRIMARY KEY,
+	nome TEXT NOT NULL,
+	cpf TEXT NOT NULL UNIQUE,
+	email TEXT NOT NULL UNIQUE,
+	turma_id INTEGER NOT NULL REFERENCES turmas(id)
+);
+
+CREATE TABLE turmas(
+	id SERIAL PRIMARY KEY,
+	codigo TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE turmas_alunos(
+	id SERIAL PRIMARY KEY,
+	aluno_id INTEGER NOT NULL REFERENCES alunos(id),
+	turma_id INTEGER NOT NULL REFERENCES turmas(id),
+	entrada DATE NOT NULL,
+	saida DATE
+);
+
+CREATE TABLE modulos(
+	id SERIAL PRIMARY KEY,
+	nome TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE projetos(
+	id SERIAL PRIMARY KEY,
+	nome TEXT NOT NULL UNIQUE,
+	modulo_id INTEGER NOT NULL REFERENCES modulos(id)
+);
+
+CREATE TABLE projetos_entregas(
+	id SERIAL PRIMARY KEY,
+	aluno_id INTEGER NOT NULL REFERENCES alunos(id),
+	projeto_id INTEGER NOT NULL REFERENCES projetos(id),
+	entrega DATE NOT NULL DEFAULT NOW(),
+	nota TEXT NOT NULL
+);
